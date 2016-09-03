@@ -34,7 +34,7 @@ public class State<T> implements Comparable<State<T>> {
 	 * @return Solution to this state
 	 */
 	public Solution<T> getSolution() {
-		Solution solution = new Solution();
+		Solution<T> solution = new Solution<T>();
 		solution.add(this);
 		if (cameFrom != null)
 			solution.add(cameFrom.getSolution());
