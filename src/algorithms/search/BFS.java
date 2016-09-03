@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 /**
  * BFS algorithm to solve any searchable object
- * @param T 
+ * @param T State param
  * @author Ben Surkiss & Yovel Shchori
  * @version 1.0
  */
