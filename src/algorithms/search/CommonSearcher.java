@@ -6,8 +6,10 @@ package algorithms.search;
 import java.util.PriorityQueue;
 
 /**
- * @author bensu
- *
+ * Abstract class to contain all shared resources and method for Searcher
+ * @param T State param
+ * @author Ben Surkiss & Yovel Shchori
+ * @version 1.0
  */
 public abstract class CommonSearcher<T> implements Searcher<T> {
 	protected PriorityQueue<State<T>> openList;
@@ -33,8 +35,8 @@ public abstract class CommonSearcher<T> implements Searcher<T> {
 		return evaluatedNodes;
 	}
 	/**
-	 * 
-	 * @return
+	 * Return a State from priority queue and increase evaluated nodes
+	 * @return State from openList
 	 */
 	protected State<T> popOpenList() {
 		evaluatedNodes++;

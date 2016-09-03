@@ -108,8 +108,8 @@ public class State<T> implements Comparable<State<T>> {
 		sb.append(state.toString());
 		return sb.toString();
 	}
-	/**
-	 * 
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable<T>#compareTo(State<T> o)
 	 */
 	@Override
 	public int compareTo(State<T> o) {
