@@ -35,6 +35,54 @@ public class Maze3d {
 		this.startPosition = null;
 		this.goalPosition = null;
 	}
+	
+	public Maze3d(byte[] arr) {
+		int k = 0;
+		this.flos = arr[k++];
+		this.rows = arr[k++];
+		this.cols = arr[k++];
+		maze = new int[flos][rows][cols];		
+		
+		Position startPos = new Position(arr[k++],arr[k++], arr[k++]);
+		this.setStartPosition(startPos);
+		Position goalPos = new Position(arr[k++],arr[k++], arr[k++]);
+		this.setGoalPosition(goalPos);
+		
+		for (int z = 0; z < flos; z++) {
+			for (int x = 0; x < rows; x++) {
+				for (int y = 0; y < cols; y++) {
+					maze[z][x][y] = arr[k++];
+				}			
+			}
+		}
+	}
+	
+	public byte[] toByteArray() {
+		ArrayList<Byte> arr = new ArrayList<Byte>();
+		arr.add((byte)rows);
+		arr.add((byte)cols);
+		arr.add((byte)startPosition.getZ());
+		arr.add((byte)startPosition.getX());
+		arr.add((byte)startPosition.getY());
+		arr.add((byte)goalPosition.getZ());
+		arr.add((byte)goalPosition.getX());
+		arr.add((byte)goalPosition.getX());
+		
+		for (int z = 0; z < flos; z++) {
+			for (int x = 0; x < rows; x++) {
+				for (int y = 0; y < cols; y++) {
+					arr.add((byte)maze[z][x][y]);
+				}
+			}			
+		}
+		
+		byte[] bytes = new byte[arr.size()];
+		for (int i = 0; i < bytes.length; i++) {
+			bytes[i] = (byte)arr.get(i);
+		}
+		return bytes;
+	}
+	
 	/**
 	 * @return the cols
 	 */

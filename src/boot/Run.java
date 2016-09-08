@@ -3,12 +3,20 @@
  */
 package boot;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import algorithms.search.BFS;
 import algorithms.search.DFS;
 import algorithms.search.Searchable;
 import algorithms.search.SearchableMaze3d;
 import algorithms.search.Searcher;
+import io.MyCompressorOutputStream;
+import io.MyDecompressorInputStream;
 import mazeGenerators.algorithms.GrowingTreeGenerator;
+import mazeGenerators.algorithms.Maze3d;
 import mazeGenerators.algorithms.Position;
 import mazeGenerators.algorithms.randomCellChooser;
 
@@ -40,4 +48,18 @@ public class Run {
 		System.out.println("Search took " + String.valueOf(finishTime - startTime) + "ms");
 		System.out.println(searcher.getNumberOfNodesEvaluated() + " States evaluated");
 	}
+	
+	
+	
+	//compression test
+	
+	Maze3d maze; //... generate it
+	
+	// save it to a file
+	
+	InputStream in = new MyDecompressorInputStream(new FileInputStream("2.maz"));
+	
+	
+	
+	
 }
