@@ -1,6 +1,5 @@
 package io;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -9,10 +8,6 @@ public class MyCompressorOutputStream extends OutputStream {
 	private OutputStream out;
 	
 	public MyCompressorOutputStream(OutputStream out) {
-		this.out = out;
-	}
-	
-	public MyCompressorOutputStream(FileOutputStream out) {
 		this.out = out;
 	}
 	
