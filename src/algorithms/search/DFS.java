@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * @author bensu
- *
+ * DFS algorithm to solve any searchable object
+ * @param T State param
+ * @author Ben Surkiss & Yovel Shchori
+ * @version 1.0
  */
 public class DFS<T> extends CommonSearcher<T> {
 	private HashSet<State<T>> visited;
@@ -21,8 +23,8 @@ public class DFS<T> extends CommonSearcher<T> {
 		visited = new HashSet<State<T>>();
 		stack = new Stack<State<T>>();
 	}
-	/**
-	 * 
+	/* (non-Javadoc)
+	 * @see algorithms.search.CommonSearcher#search(algorithms.search.Searchable)
 	 */
 	@Override
 	public Solution<T> search(Searchable<T> s) { //TODO not working!
@@ -45,7 +47,7 @@ public class DFS<T> extends CommonSearcher<T> {
 		return null;
 	}
 	/**
-	 * 
+	 * Return State from stack (openList) and increase evaluated nodes
 	 * @return State from stack
 	 */
 	@Override

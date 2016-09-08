@@ -5,8 +5,10 @@ package algorithms.search;
 import java.util.ArrayList;
 
 /**
- * @author bensu
- *
+ * Solution to a problem
+ * @param T State param
+ * @author Ben Surkiss & Yovel Shchori
+ * @version 1.0
  */
 public class Solution<T> {
 	protected ArrayList<State<T>> solution;
@@ -17,14 +19,22 @@ public class Solution<T> {
 		solution = new ArrayList<State<T>>();
 	}
 	/**
-	 * 
+	 * Add given state to the solution
 	 * @param s State to add
 	 */
 	public void add(State<T> s) {
 		solution.add(s);
 	}
-	/*
-	 * 
+	/**
+	 * Add given solution to the solution
+	 * @param solution2 to add to this solution
+	 */
+	public void add(Solution<T> solution2) {
+		for (State<T> s : solution2.solution)
+			add(s);
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString(){
@@ -61,13 +71,5 @@ public class Solution<T> {
 		} else if (!solution.equals(other.solution))
 			return false;
 		return true;
-	}
-	/**
-	 * 
-	 * @param solution2
-	 */
-	public void add(Solution<T> solution2) {
-		for (State<T> s : solution2.solution)
-			add(s);
 	}
 }

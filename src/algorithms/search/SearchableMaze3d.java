@@ -2,22 +2,26 @@
  * 
  */
 package algorithms.search;
-
 import java.util.ArrayList;
-
+import java.util.List;
 import mazeGenerators.algorithms.Maze3d;
 import mazeGenerators.algorithms.Position;
 
 /**
- * @author bensu
- *
+ * Searchable adapter for Maze3d
+ * @param T State param
+ * @author Ben Surkiss & Yovel Shchori
+ * @version 1.0
  */
 public class SearchableMaze3d implements Searchable<Position> {
 	private Maze3d maze;
 	private State<Position> startState;
 	private State<Position> goalState;
 	
-	
+	/**
+	 * C'tor
+	 * @param maze to hold as the searchable maze
+	 */
 	public SearchableMaze3d(Maze3d maze) {
 		this.maze = maze;
 		this.startState = new State<Position>(maze.getStartPosition());
@@ -44,7 +48,7 @@ public class SearchableMaze3d implements Searchable<Position> {
 	 * @see algorithms.search.Searchable#getSuccessors(algorithms.search.State)
 	 */
 	@Override
-	public ArrayList<State<Position>> getSuccessors(State<Position> n) {
+	public List<State<Position>> getSuccessors(State<Position> n) {
 		if (n instanceof State<?>) {
 			ArrayList<State<Position>> list = new ArrayList<State<Position>>();
 			for (Position p : maze.getPossibleMoves(((State<Position>)n).getState()))

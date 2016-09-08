@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.HashSet;
 
 /**
- * @author bensu
- *
+ * BFS algorithm to solve any searchable object
+ * @param T State param
+ * @author Ben Surkiss & Yovel Shchori
+ * @version 1.0
  */
 public class BFS<T> extends CommonSearcher<T> {
 	private HashSet<State<T>> closedList;

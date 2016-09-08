@@ -34,7 +34,7 @@ public class State<T> implements Comparable<State<T>> {
 	 * @return Solution to this state
 	 */
 	public Solution<T> getSolution() {
-		Solution solution = new Solution();
+		Solution<T> solution = new Solution<T>();
 		solution.add(this);
 		if (cameFrom != null)
 			solution.add(cameFrom.getSolution());
@@ -108,8 +108,8 @@ public class State<T> implements Comparable<State<T>> {
 		sb.append(state.toString());
 		return sb.toString();
 	}
-	/**
-	 * 
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable<T>#compareTo(State<T> o)
 	 */
 	@Override
 	public int compareTo(State<T> o) {
