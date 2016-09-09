@@ -74,11 +74,6 @@ public class Maze3d {
 		arr.add((byte)goalPosition.getX());
 		arr.add((byte)goalPosition.getY());
 		arr.add((byte)goalPosition.getZ());
-<<<<<<< HEAD
-=======
-		arr.add((byte)goalPosition.getX());
-		arr.add((byte)goalPosition.getY());
->>>>>>> branch 'master' of https://github.com/bensur/JavaProject-College.git
 		
 		for (int z = 0; z < flos; z++) {
 			for (int x = 0; x < rows; x++) {
