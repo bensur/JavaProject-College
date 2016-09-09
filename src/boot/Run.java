@@ -4,7 +4,9 @@
 package boot;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -29,11 +31,44 @@ public class Run {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		SearchableMaze3d smaze = new SearchableMaze3d((new GrowingTreeGenerator(new randomCellChooser())).generate(20, 20, 20));
-		System.out.println("Start: " + smaze.getStartState());
-		System.out.println("Goal: " + smaze.getGoalState());
-		searchMaze(new BFS<Position>(), smaze);
-		searchMaze(new DFS<Position>(), smaze);
+//		SearchableMaze3d smaze = new SearchableMaze3d((new GrowingTreeGenerator(new randomCellChooser())).generate(20, 20, 20));
+//		System.out.println("Start: " + smaze.getStartState());
+//		System.out.println("Goal: " + smaze.getGoalState());
+//		searchMaze(new BFS<Position>(), smaze);
+//		searchMaze(new DFS<Position>(), smaze);
+		Maze3d maze = new GrowingTreeGenerator(new randomCellChooser()).generate(20, 20, 20); //... generate it
+		// save it to a file
+		OutputStream out;
+		try {
+			out = new MyCompressorOutputStream(
+			new FileOutputStream("1.maz"));
+			out.write(maze.toByteArray());
+			out.flush();
+			out.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		InputStream in;
+		try {
+			in = new MyDecompressorInputStream(
+			new FileInputStream("1.maz"));
+			byte b[]=new byte[maze.toByteArray().length];
+			in.read(b);
+			in.close();
+			Maze3d loaded=new Maze3d(b);
+			System.out.println(loaded.equals(maze));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	/**
 	 * 
