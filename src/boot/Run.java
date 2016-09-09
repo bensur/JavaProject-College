@@ -53,11 +53,7 @@ public class Run {
 	
 	//compression test
 	
-	Maze3d maze; //... generate it
 	
-	// save it to a file
-	
-	InputStream in = new MyDecompressorInputStream(new FileInputStream("2.maz"));
 	
 	
 	
