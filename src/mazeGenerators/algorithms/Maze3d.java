@@ -35,7 +35,10 @@ public class Maze3d {
 		this.startPosition = null;
 		this.goalPosition = null;
 	}
-	
+	/**
+	 * 
+	 * @param arr byte array to build maze from
+	 */
 	public Maze3d(byte[] arr) {
 		int k = 0;
 		this.flos = arr[k++];
@@ -56,9 +59,13 @@ public class Maze3d {
 			}
 		}
 	}
-	
+	/**
+	 * 
+	 * @return byte array to represent the maze
+	 */
 	public byte[] toByteArray() {
 		ArrayList<Byte> arr = new ArrayList<Byte>();
+		arr.add((byte)flos);
 		arr.add((byte)rows);
 		arr.add((byte)cols);
 		arr.add((byte)startPosition.getZ());
@@ -66,14 +73,14 @@ public class Maze3d {
 		arr.add((byte)startPosition.getY());
 		arr.add((byte)goalPosition.getZ());
 		arr.add((byte)goalPosition.getX());
-		arr.add((byte)goalPosition.getX());
+		arr.add((byte)goalPosition.getY());
 		
 		for (int z = 0; z < flos; z++) {
 			for (int x = 0; x < rows; x++) {
 				for (int y = 0; y < cols; y++) {
 					arr.add((byte)maze[z][x][y]);
 				}
-			}			
+			}
 		}
 		
 		byte[] bytes = new byte[arr.size()];

@@ -36,7 +36,7 @@ public class Run {
 //		System.out.println("Goal: " + smaze.getGoalState());
 //		searchMaze(new BFS<Position>(), smaze);
 //		searchMaze(new DFS<Position>(), smaze);
-		Maze3d maze = new GrowingTreeGenerator(new randomCellChooser()).generate(20, 20, 20); //... generate it
+		Maze3d maze = new GrowingTreeGenerator(new randomCellChooser()).generate(2, 2, 2); //... generate it
 		// save it to a file
 		OutputStream out;
 		try {
@@ -68,7 +68,6 @@ public class Run {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	/**
 	 * 
@@ -83,14 +82,4 @@ public class Run {
 		System.out.println("Search took " + String.valueOf(finishTime - startTime) + "ms");
 		System.out.println(searcher.getNumberOfNodesEvaluated() + " States evaluated");
 	}
-	
-	
-	
-	//compression test
-	
-	
-	
-	
-	
-	
 }
