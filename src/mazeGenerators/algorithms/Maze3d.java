@@ -59,14 +59,15 @@ public class Maze3d {
 	
 	public byte[] toByteArray() {
 		ArrayList<Byte> arr = new ArrayList<Byte>();
+		arr.add((byte)flos);
 		arr.add((byte)rows);
 		arr.add((byte)cols);
-		arr.add((byte)startPosition.getZ());
 		arr.add((byte)startPosition.getX());
 		arr.add((byte)startPosition.getY());
+		arr.add((byte)startPosition.getZ());
+		arr.add((byte)goalPosition.getX());
+		arr.add((byte)goalPosition.getY());
 		arr.add((byte)goalPosition.getZ());
-		arr.add((byte)goalPosition.getX());
-		arr.add((byte)goalPosition.getX());
 		
 		for (int z = 0; z < flos; z++) {
 			for (int x = 0; x < rows; x++) {
@@ -82,7 +83,7 @@ public class Maze3d {
 		}
 		return bytes;
 	}
-	
+
 	/**
 	 * @return the cols
 	 */
@@ -609,5 +610,48 @@ public class Maze3d {
 			setPathFree(start, new Position(start.getX(), end.getY(), start.getZ()));
 			start = getBuildRightPosition(start);
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + cols;
+		result = prime * result + flos;
+		result = prime * result + ((goalPosition == null) ? 0 : goalPosition.hashCode());
+		result = prime * result + Arrays.deepHashCode(maze);
+		result = prime * result + rows;
+		result = prime * result + ((startPosition == null) ? 0 : startPosition.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Maze3d other = (Maze3d) obj;
+		if (cols != other.cols)
+			return false;
+		if (flos != other.flos)
+			return false;
+		if (goalPosition == null) {
+			if (other.goalPosition != null)
+				return false;
+		} else if (!goalPosition.equals(other.goalPosition))
+			return false;
+		if (!Arrays.deepEquals(maze, other.maze))
+			return false;
+		if (rows != other.rows)
+			return false;
+		if (startPosition == null) {
+			if (other.startPosition != null)
+				return false;
+		} else if (!startPosition.equals(other.startPosition))
+			return false;
+		return true;
 	}
 }

@@ -23,7 +23,8 @@ public class MyDecompressorInputStream extends InputStream {
 			byte b = (byte) in.read();
 			
 			for (int j = 0; j < count; j++) {
-				arr[k++] = b;
+				arr[k] = b;
+				k++;
 			}
 		}
 		return arr.length;		

@@ -36,7 +36,7 @@ public class Run {
 //		System.out.println("Goal: " + smaze.getGoalState());
 //		searchMaze(new BFS<Position>(), smaze);
 //		searchMaze(new DFS<Position>(), smaze);
-		Maze3d maze = new GrowingTreeGenerator(new randomCellChooser()).generate(20, 20, 20); //... generate it
+		Maze3d maze = new GrowingTreeGenerator(new randomCellChooser()).generate(2, 2, 2); //... generate it
 		// save it to a file
 		OutputStream out;
 		try {
