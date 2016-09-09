@@ -68,7 +68,6 @@ public class Run {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	/**
 	 * 
@@ -83,14 +82,4 @@ public class Run {
 		System.out.println("Search took " + String.valueOf(finishTime - startTime) + "ms");
 		System.out.println(searcher.getNumberOfNodesEvaluated() + " States evaluated");
 	}
-	
-	
-	
-	//compression test
-	
-	
-	
-	
-	
-	
 }
