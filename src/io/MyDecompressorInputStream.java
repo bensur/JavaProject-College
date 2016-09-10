@@ -19,9 +19,8 @@ public class MyDecompressorInputStream extends InputStream {
 	public int read(byte[] arr) throws IOException {
 		int k = 0;
 		while (k < arr.length) {
-			byte count = (byte) in.read();
-			byte b = (byte) in.read();
-			
+			byte count = (byte)in.read();
+			byte b = (byte)in.read();
 			for (int j = 0; j < count; j++) {
 				arr[k] = b;
 				k++;

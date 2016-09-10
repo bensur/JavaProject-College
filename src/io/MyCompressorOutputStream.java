@@ -23,10 +23,10 @@ public class MyCompressorOutputStream extends OutputStream {
 		
 		for (int i = 1; i < arr.length; i++) {
 			if (arr[i] != currByte) {
-				while (count >= 255) {
-					out.write(255);
+				while (count >= 127) {
+					out.write(127);
 					out.write(currByte);
-					count -= 255;
+					count -= 127;
 				}
 				out.write(count);
 				out.write(currByte);
@@ -37,9 +37,14 @@ public class MyCompressorOutputStream extends OutputStream {
 				count++;
 			}
 		}
+		while (count >= 127) {
+			out.write(127);
+			out.write(currByte);
+			count -= 127;
+		}
 		out.write(count);
 		out.write(currByte);
-		
+
 	}
 
 }
