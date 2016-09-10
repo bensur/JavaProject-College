@@ -9,7 +9,7 @@ public class MyDecompressorInputStream extends InputStream {
 	public MyDecompressorInputStream(InputStream in) {
 		this.in = in;
 	}
-
+	
 	@Override
 	public int read() throws IOException {		
 		return in.read();

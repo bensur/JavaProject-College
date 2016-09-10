@@ -18,8 +18,14 @@ public class MyCompressorOutputStream extends OutputStream {
 	
 	@Override
 	public void write(byte[] arr) throws IOException {
+		int arrSize = arr.length;
+		int count = (arrSize / MAX_COUNT);
+		out.write(count);
+		out.write(MAX_COUNT);
+		out.write(1);
+		out.write(arrSize % MAX_COUNT);
 		byte currByte = arr[0];
-		int count = 1;
+		count = 1;
 		
 		for (int i = 1; i < arr.length; i++) {
 			if (arr[i] != currByte) {

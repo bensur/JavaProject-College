@@ -36,7 +36,7 @@ public class Run {
 //		System.out.println("Goal: " + smaze.getGoalState());
 //		searchMaze(new BFS<Position>(), smaze);
 //		searchMaze(new DFS<Position>(), smaze);
-		Maze3d maze = new GrowingTreeGenerator(new randomCellChooser()).generate(50, 50, 50); //... generate it
+		Maze3d maze = new GrowingTreeGenerator(new randomCellChooser()).generate(10, 10, 10); //... generate it
 		// save it to a file
 		OutputStream out;
 		try {
@@ -56,7 +56,11 @@ public class Run {
 		try {
 			in = new MyDecompressorInputStream(
 			new FileInputStream("1.maz"));
-			byte b[]=new byte[maze.toByteArray().length];
+			byte[] sizeArr = new byte[4];
+			for (int i = 0 ; i < sizeArr.length ; i++)
+				sizeArr[i] = (byte)in.read();
+			int size = ((sizeArr[0] * sizeArr[1]) + (sizeArr[2] * sizeArr[3]));
+			byte b[]=new byte[size];
 			in.read(b);
 			in.close();
 			Maze3d loaded=new Maze3d(b);
