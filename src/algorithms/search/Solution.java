@@ -3,6 +3,7 @@
  */
 package algorithms.search;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Solution to a problem
@@ -17,6 +18,13 @@ public class Solution<T> {
 	 */
 	public Solution() {
 		solution = new ArrayList<State<T>>();
+	}
+	/**
+	 * 
+	 * @return solution List
+	 */
+	public List<State<T>> getSolution(){
+		return solution;
 	}
 	/**
 	 * Add given state to the solution
