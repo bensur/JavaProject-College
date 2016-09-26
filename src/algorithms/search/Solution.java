@@ -31,7 +31,7 @@ public class Solution<T> {
 	 * @param s State to add
 	 */
 	public void add(State<T> s) {
-		solution.add(s);
+		solution.add(0, s);
 	}
 	/**
 	 * Add given solution to the solution
