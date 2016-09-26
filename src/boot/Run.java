@@ -31,11 +31,11 @@ public class Run {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//		SearchableMaze3d smaze = new SearchableMaze3d((new GrowingTreeGenerator(new randomCellChooser())).generate(20, 20, 20));
-//		System.out.println("Start: " + smaze.getStartState());
-//		System.out.println("Goal: " + smaze.getGoalState());
-//		searchMaze(new BFS<Position>(), smaze);
-//		searchMaze(new DFS<Position>(), smaze);
+		SearchableMaze3d smaze = new SearchableMaze3d((new GrowingTreeGenerator(new randomCellChooser())).generate(20, 20, 20));
+		System.out.println("Start: " + smaze.getStartState());
+		System.out.println("Goal: " + smaze.getGoalState());
+		searchMaze(new BFS<Position>(), smaze);
+		searchMaze(new DFS<Position>(), smaze);
 		Maze3d maze = new GrowingTreeGenerator(new randomCellChooser()).generate(10, 10, 10); //... generate it
 		// save it to a file
 		OutputStream out;

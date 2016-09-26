@@ -91,6 +91,7 @@ public class State<T> implements Comparable<State<T>> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		@SuppressWarnings("unchecked")
 		State<T> other = (State<T>) obj;
 		if (state == null) {
 			if (other.state != null)

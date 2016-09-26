@@ -72,6 +72,7 @@ public class Solution<T> {
 			return false;
 		if (!(obj instanceof Solution))
 			return false;
+		@SuppressWarnings("unchecked")
 		Solution<T> other = (Solution<T>) obj;
 		if (solution == null) {
 			if (other.solution != null)
