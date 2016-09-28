@@ -6,7 +6,7 @@ package algorithms.search;
 import java.io.Serializable;
 
 /**
- * @author bensu
+ * @author Ben Surkiss & Yovel Shchori
  *
  */
 public class State<T> implements Comparable<State<T>>, Serializable {
