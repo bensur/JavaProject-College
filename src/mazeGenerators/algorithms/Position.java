@@ -3,7 +3,10 @@
  */
 package mazeGenerators.algorithms;
 
-public class Position {
+import java.io.Serializable;
+
+public class Position implements Serializable {
+	private static final long serialVersionUID = -7043916336674527477L;
 	//Members
 	private int x;
 	private int y;

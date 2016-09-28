@@ -1,11 +1,13 @@
 package mazeGenerators.algorithms;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class Maze3d {
+public class Maze3d implements Serializable {
+	private static final long serialVersionUID = -8060980233909744023L;
 	public static final int WALL = 1;
 	public static final int FREE = 0;
 	private int cols;

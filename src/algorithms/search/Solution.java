@@ -2,6 +2,7 @@
  * 
  */
 package algorithms.search;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,8 @@ import java.util.List;
  * @author Ben Surkiss & Yovel Shchori
  * @version 1.0
  */
-public class Solution<T> {
+public class Solution<T> implements Serializable {
+	private static final long serialVersionUID = 7043133331394202163L;
 	protected ArrayList<State<T>> solution;
 	/**
 	 * C'tor

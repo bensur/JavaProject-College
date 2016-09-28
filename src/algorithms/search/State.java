@@ -2,11 +2,15 @@
  * 
  */
 package algorithms.search;
+
+import java.io.Serializable;
+
 /**
  * @author bensu
  *
  */
-public class State<T> implements Comparable<State<T>> {
+public class State<T> implements Comparable<State<T>>, Serializable {
+	private static final long serialVersionUID = -2717538413230275394L;
 	private int cost;
 	private T state;
 	private State<T> cameFrom;
