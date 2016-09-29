@@ -15,7 +15,7 @@ public class State<T> implements Comparable<State<T>>, Serializable {
 	private T state;
 	private State<T> cameFrom;
 	/*
-	 * 
+	 * C'tor
 	 * @param t state <T>
 	 */
 	public State(T t) {
@@ -24,7 +24,7 @@ public class State<T> implements Comparable<State<T>>, Serializable {
 		this.cameFrom = null;
 	}
 	/*
-	 * 
+	 * C'tor
 	 * @param t state <T>
 	 * @param cost to set
 	 */
@@ -34,7 +34,7 @@ public class State<T> implements Comparable<State<T>>, Serializable {
 		this.cameFrom = null;
 	}
 	/**
-	 * 
+	 * Return Solution for this state
 	 * @return Solution to this state
 	 */
 	public Solution<T> getSolution() {
@@ -45,28 +45,28 @@ public class State<T> implements Comparable<State<T>>, Serializable {
 		return solution;
 	}
 	/**
-	 * 
+	 * Set cameFrom
 	 * @param n State came from
 	 */
 	public void setFrom(State<T> n) {
 		this.cameFrom = n;
 	}
 	/**
-	 * 
+	 * Return cost
 	 * @return state cost
 	 */
 	public int getCost() {
 		return this.cost;
 	}
 	/**
-	 * 
+	 * Set cost
 	 * @param cost to set
 	 */
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
 	/**
-	 * 
+	 * Getter for state
 	 * @return state
 	 */
 	public T getState() {
@@ -79,8 +79,6 @@ public class State<T> implements Comparable<State<T>>, Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-//		result = prime * result + ((cameFrom == null) ? 0 : cameFrom.hashCode());
-//		result = prime * result + cost;
 		result = prime * result + ((state == null) ? 0 : state.hashCode());
 		return result;
 	}

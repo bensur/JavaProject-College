@@ -2,11 +2,18 @@ package io;
 
 import java.io.IOException;
 import java.io.OutputStream;
-
+/**
+ * Write compressed data to given output stream
+ * @author Ben Surkiss & Yovel Shchori
+ * @version 1.0
+ */
 public class MyCompressorOutputStream extends OutputStream {
 	public static final int MAX_COUNT = 127;
 	private OutputStream out;
-	
+	/**
+	 * C'tor
+	 * @param out output stream to use
+	 */
 	public MyCompressorOutputStream(OutputStream out) {
 		this.out = out;
 	}
@@ -50,7 +57,5 @@ public class MyCompressorOutputStream extends OutputStream {
 		}
 		out.write(count);
 		out.write(currByte);
-
 	}
-
 }

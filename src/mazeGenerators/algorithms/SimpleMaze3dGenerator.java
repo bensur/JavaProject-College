@@ -1,7 +1,11 @@
 package mazeGenerators.algorithms;
 
 import java.util.Random;
-
+/**
+ * Generate Maze3d using simple algorithm
+ * @author Ben Surkiss & Yovel Shchori
+ * @version 1.0
+ */
 public class SimpleMaze3dGenerator extends CommonMaze3dGenerator {
 	private Random rand = new Random();
 	//Define ratio for free cells in the maze

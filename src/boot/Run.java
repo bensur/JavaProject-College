@@ -20,7 +20,7 @@ import io.MyDecompressorInputStream;
 import mazeGenerators.algorithms.GrowingTreeGenerator;
 import mazeGenerators.algorithms.Maze3d;
 import mazeGenerators.algorithms.Position;
-import mazeGenerators.algorithms.randomCellChooser;
+import mazeGenerators.algorithms.RandomPositionChooser;
 
 /**
  * @author bensu
@@ -31,12 +31,12 @@ public class Run {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		SearchableMaze3d smaze = new SearchableMaze3d((new GrowingTreeGenerator(new randomCellChooser())).generate(20, 20, 20));
+		SearchableMaze3d smaze = new SearchableMaze3d((new GrowingTreeGenerator(new RandomPositionChooser())).generate(20, 20, 20));
 		System.out.println("Start: " + smaze.getStartState());
 		System.out.println("Goal: " + smaze.getGoalState());
 		searchMaze(new BFS<Position>(), smaze);
 		searchMaze(new DFS<Position>(), smaze);
-		Maze3d maze = new GrowingTreeGenerator(new randomCellChooser()).generate(10, 10, 10); //... generate it
+		Maze3d maze = new GrowingTreeGenerator(new RandomPositionChooser()).generate(10, 10, 10); //... generate it
 		// save it to a file
 		OutputStream out;
 		try {
@@ -74,9 +74,9 @@ public class Run {
 		}
 	}
 	/**
-	 * 
-	 * @param searcher
-	 * @param searchable
+	 * Search given searchable with given searcher and generate output with time took, class used and evaluated nodes
+	 * @param searcher to search with
+	 * @param searchable to search
 	 */
 	public static void searchMaze(Searcher<Position> searcher, Searchable<Position> searchable) {
 		System.out.println("=====" + searcher.getClass() + "=====");

@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
+/**
+ * Object representation of 3D maze
+ * @author Ben Surkiss & Yovel Shchori
+ * @version 1.0
+ */
 public class Maze3d implements Serializable {
 	private static final long serialVersionUID = -8060980233909744023L;
 	public static final int WALL = 1;
@@ -16,13 +20,11 @@ public class Maze3d implements Serializable {
 	private int[][][] maze;
 	private Position startPosition;
 	private Position goalPosition;
-	
-	//Methods
 	/**
-	 * 
-	 * @param cols
-	 * @param rows
-	 * @param flos
+	 * C'tor
+	 * @param cols to create
+	 * @param rows to create
+	 * @param flos to create
 	 */
 	public Maze3d(int cols, int rows, int flos) {
 		if ((cols < 1) || (rows < 1) || (flos < 1))
@@ -31,6 +33,7 @@ public class Maze3d implements Serializable {
 		this.rows = rows;
 		this.flos = flos;
 		this.maze = new int[flos][rows][cols];
+		// Fill maze with walls
 		for (int[][] fDimMaze : this.maze)
 			for (int[] rDimMaze : fDimMaze)
 				Arrays.fill(rDimMaze, Maze3d.WALL);
@@ -38,7 +41,7 @@ public class Maze3d implements Serializable {
 		this.goalPosition = null;
 	}
 	/**
-	 * 
+	 * C'tor from byte array
 	 * @param arr byte array to build maze from
 	 */
 	public Maze3d(byte[] arr) {
@@ -47,12 +50,12 @@ public class Maze3d implements Serializable {
 		this.rows = arr[k++];
 		this.cols = arr[k++];
 		maze = new int[flos][rows][cols];		
-		
+		// Initialize start/end positions
 		Position startPos = new Position(arr[k++],arr[k++], arr[k++]);
 		this.setStartPosition(startPos);
 		Position goalPos = new Position(arr[k++],arr[k++], arr[k++]);
 		this.setGoalPosition(goalPos);
-		
+		// Fill maze
 		for (int z = 0; z < flos; z++) {
 			for (int x = 0; x < rows; x++) {
 				for (int y = 0; y < cols; y++) {
@@ -62,7 +65,7 @@ public class Maze3d implements Serializable {
 		}
 	}
 	/**
-	 * 
+	 * Convert maze data to byte array representation
 	 * @return byte array to represent the maze
 	 */
 	public byte[] toByteArray() {
@@ -93,61 +96,65 @@ public class Maze3d implements Serializable {
 	}
 
 	/**
+	 * Columns getter
 	 * @return the cols
 	 */
 	public int getCols() {
 		return cols;
 	}
 	/**
+	 * Rows getter
 	 * @return the rows
 	 */
 	public int getRows() {
 		return rows;
 	}
 	/**
+	 * Floors getter
 	 * @return the flos
 	 */
 	public int getFlos() {
 		return flos;
 	}
 	/**
+	 * Maze getter
 	 * @return the maze
 	 */
 	public int[][][] getMaze() {
 		return maze;
 	}
 	/**
-	 * 
+	 * Start position getter
 	 * @return startPosition
 	 */
 	public Position getStartPosition() {
 		return this.startPosition;
 	}
 	/**
-	 * 
+	 * Goal position getter
 	 * @return goalPosition
 	 */
 	public Position getGoalPosition() {
 		return this.goalPosition;
 	}
 	/**
-	 * 
-	 * @param p
+	 * Start position setter
+	 * @param p position to set as start position
 	 */
 	public void setStartPosition(Position p) {
 		this.startPosition = p;
 	}
 	/**
-	 * 
-	 * @param p
+	 * Goal position setter
+	 * @param p position to set as goal position
 	 */
 	public void setGoalPosition(Position p) {
 		this.goalPosition = p;
 	}
 	/**
-	 * 
-	 * @param x
-	 * @return
+	 * Return 2D representation of the maze by fixing given row
+	 * @param x row to 'fix' on
+	 * @return 2D representation of the maze
 	 */
 	public int[][] getCrossSectionByX(int x) {
 		if ((x >= this.rows) || (x < 0))
@@ -159,9 +166,9 @@ public class Maze3d implements Serializable {
 		return maze;
 	}
 	/**
-	 * 
-	 * @param y
-	 * @return
+	 * Return 2D representation of the maze by fixing given column
+	 * @param y column to 'fix' on
+	 * @return 2D representation of the maze
 	 */
 	public int[][] getCrossSectionByY(int y) {
 		if ((y >= this.cols) || (y < 0))
@@ -173,9 +180,9 @@ public class Maze3d implements Serializable {
 		return maze;
 	}
 	/**
-	 * 
-	 * @param z
-	 * @return
+	 * Return 2D representation of the maze by fixing given floor
+	 * @param z column to 'fix' on
+	 * @return 2D representation of the maze
 	 */
 	public int[][] getCrossSectionByZ(int z) {
 		if ((z >= this.flos) || (z < 0))
@@ -187,11 +194,11 @@ public class Maze3d implements Serializable {
 		return maze;
 	}
 	/**
-	 * 
-	 * @param row
-	 * @param col
-	 * @param flo
-	 * @return
+	 * Get the value in given place
+	 * @param row of the desired Position
+	 * @param col of the desired Position
+	 * @param flo of the desired Position
+	 * @return value of the desired position
 	 */
 	public int getValue(int row, int col, int flo) {
 		if (isValidPosition(row, col, flo))
@@ -200,18 +207,18 @@ public class Maze3d implements Serializable {
 			throw new IndexOutOfBoundsException();
 	}
 	/**
-	 * 
-	 * @param p
-	 * @return
+	 * Get the value in given Position
+	 * @param p desired Position to check
+	 * @return value of the desired position
 	 */
 	public int getValue(Position p) {
 		return getValue(p.getX(), p.getY(), p.getZ());
 	}
 	/**
-	 * 
-	 * @param row
-	 * @param col
-	 * @param flo
+	 * Set wall in given position
+	 * @param row of the position
+	 * @param col of the position
+	 * @param flo of the position
 	 */
 	public void setWall(int row, int col, int flo) {
 		if (isValidPosition(row, col, flo))
@@ -220,17 +227,17 @@ public class Maze3d implements Serializable {
 			throw new IndexOutOfBoundsException();
 	}
 	/**
-	 * 
-	 * @param p
+	 * Set wall in given position
+	 * @param p position to set wall in
 	 */
 	public void setWall(Position p) {
 		setWall(p.getX(), p.getY(), p.getZ());
 	}
 	/**
-	 * 
-	 * @param row
-	 * @param col
-	 * @param flo
+	 * Set given position as free
+	 * @param row of the position
+	 * @param col of the position
+	 * @param flo of the position
 	 */
 	public void setFree(int row, int col, int flo) {
 		if (isValidPosition(row, col, flo))
@@ -239,16 +246,16 @@ public class Maze3d implements Serializable {
 			throw new IndexOutOfBoundsException();
 	}
 	/**
-	 * 
-	 * @param p
+	 * Set given position as free
+	 * @param p position to set as free
 	 */
 	public void setFree(Position p){
 		setFree(p.getX(), p.getY(), p.getZ());
 	}
 	/**
-	 * 
-	 * @param p1
-	 * @param p2
+	 * Set path between two given positions as free - must be in same column/row/floor
+	 * @param p1 first position
+	 * @param p2 second position
 	 */
 	public void setPathFree(Position p1, Position p2) {
 		if (!(isValidPosition(p1) && isValidPosition(p2)))
@@ -308,9 +315,9 @@ public class Maze3d implements Serializable {
 			throw new IllegalArgumentException();
 	}
 	/**
-	 * 
-	 * @param p
-	 * @return
+	 * Get all possible moves for given position
+	 * @param p position to check
+	 * @return List of possible moves
 	 */
 	public List<Position> getPossibleMoves(Position p) {
 		List<Position> positions = new ArrayList<Position>();
@@ -336,9 +343,9 @@ public class Maze3d implements Serializable {
 		return positions;
 	}
 	/**
-	 * 
-	 * @param p
-	 * @return
+	 * Get possible build moves for given position
+	 * @param p position to check
+	 * @return List of possible moves
 	 */
 	public List<Position> getBuildPossibleMoves(Position p) {
 		List<Position> positions = new ArrayList<Position>();
@@ -364,10 +371,10 @@ public class Maze3d implements Serializable {
 		return positions;
 	}
 	/**
-	 * 
-	 * @param row
-	 * @param col
-	 * @param flo
+	 * Check if given position is valid position
+	 * @param row of position to check
+	 * @param col row of position to check
+	 * @param flo row of position to check
 	 * @return true if the position is valid, else false
 	 */
 	public boolean isValidPosition(int row, int col, int flo) {
@@ -377,18 +384,18 @@ public class Maze3d implements Serializable {
 		return true;
 	}
 	/**
-	 * 
-	 * @param p
+	 * Check if given position is valid position
+	 * @param p position to check
 	 * @return true if position is valid, else false
 	 */
 	public boolean isValidPosition(Position p) {
 		return isValidPosition(p.getX(), p.getY(), p.getZ());
 	}
 	/**
-	 * 
-	 * @param row
-	 * @param col
-	 * @param flo
+	 * Check if given position is valid build position
+	 * @param row of position to check
+	 * @param col of position to check
+	 * @param flo of position to check
 	 * @return true if the position is valid, else false
 	 */
 	public boolean isValidBuildPosition(int row, int col, int flo) {
@@ -400,8 +407,8 @@ public class Maze3d implements Serializable {
 		return true;
 	}
 	/**
-	 * 
-	 * @param p
+	 * Check if given position is valid build position
+	 * @param p position to check
 	 * @return true if position is valid, else false
 	 */
 	public boolean isValidBuildPosition(Position p) {
@@ -409,7 +416,7 @@ public class Maze3d implements Serializable {
 	}
 	/**
 	 * Return Position right to position given, if it is a valid one, else return null
-	 * @param p
+	 * @param p given position
 	 * @return Position right to given position if it is valid, else return null
 	 */
 	public Position getRightPosition(Position p) {
@@ -422,7 +429,7 @@ public class Maze3d implements Serializable {
 	}
 	/**
 	 * Return Position left to position given, if it is a valid one, else return null
-	 * @param p
+	 * @param p given position
 	 * @return Position left to given position if it is valid, else return null
 	 */
 	public Position getLeftPosition(Position p) {
@@ -435,7 +442,7 @@ public class Maze3d implements Serializable {
 	}
 	/**
 	 * Return Position above the position given, if it is a valid one, else return null
-	 * @param p
+	 * @param p given position
 	 * @return Position above the given position if it is valid, else return null
 	 */
 	public Position getAbovePosition(Position p) {
@@ -448,7 +455,7 @@ public class Maze3d implements Serializable {
 	}
 	/**
 	 * Return Position below the position given, if it is a valid one, else return null
-	 * @param p
+	 * @param p given position
 	 * @return Position below the given position if it is valid, else return null
 	 */
 	public Position getBelowPosition(Position p) {
@@ -461,7 +468,7 @@ public class Maze3d implements Serializable {
 	}
 	/**
 	 * Return Position in front the position given, if it is a valid one, else return null
-	 * @param p
+	 * @param p given position
 	 * @return Position in front the given position if it is valid, else return null
 	 */
 	public Position getForwardPosition(Position p) {
@@ -474,7 +481,7 @@ public class Maze3d implements Serializable {
 	}
 	/**
 	 * Return Position out back the position given, if it is a valid one, else return null
-	 * @param p
+	 * @param p given position
 	 * @return Position out back the given position if it is valid, else return null
 	 */
 	public Position getBackwardPosition(Position p) {
@@ -487,7 +494,7 @@ public class Maze3d implements Serializable {
 	}
 	/**
 	 * Return Position right to position given, if it is a valid one, else return null
-	 * @param p
+	 * @param p given position
 	 * @return Position right to given position if it is valid, else return null
 	 */
 	public Position getBuildRightPosition(Position p) {
@@ -500,7 +507,7 @@ public class Maze3d implements Serializable {
 	}
 	/**
 	 * Return Position left to position given, if it is a valid one, else return null
-	 * @param p
+	 * @param p given position
 	 * @return Position left to given position if it is valid, else return null
 	 */
 	public Position getBuildLeftPosition(Position p) {
@@ -526,7 +533,7 @@ public class Maze3d implements Serializable {
 	}
 	/**
 	 * Return Position below the position given, if it is a valid one, else return null
-	 * @param p
+	 * @param p given position
 	 * @return Position below the given position if it is valid, else return null
 	 */
 	public Position getBuildBelowPosition(Position p) {
@@ -539,7 +546,7 @@ public class Maze3d implements Serializable {
 	}
 	/**
 	 * Return Position in front the position given, if it is a valid one, else return null
-	 * @param p
+	 * @param p given position
 	 * @return Position in front the given position if it is valid, else return null
 	 */
 	public Position getBuildForwardPosition(Position p) {
@@ -552,7 +559,7 @@ public class Maze3d implements Serializable {
 	}
 	/**
 	 * Return Position out back the position given, if it is a valid one, else return null
-	 * @param p
+	 * @param p given position
 	 * @return Position out back the given position if it is valid, else return null
 	 */
 	public Position getBuildBackwardPosition(Position p) {
@@ -564,9 +571,9 @@ public class Maze3d implements Serializable {
 		return pBackward;
 	}
 	/**
-	 * 
-	 * @param maze
-	 * @return
+	 * Return random valid position in the maze
+	 * @param rand random object to use
+	 * @return valid random position in the maze
 	 */
 	public Position getRandValidPosition(Random rand) {
 		int x, y, z;
@@ -579,10 +586,9 @@ public class Maze3d implements Serializable {
 	}
 
 	/**
-	 * 
-	 * @param maze
-	 * @param startPosition
-	 * @param goalPosition
+	 * Verify path exist between two points
+	 * @param startPosition start position
+	 * @param goalPosition goal position
 	 */
 	public void verifyPath(Position startPosition, Position goalPosition) {
 		if ((maze == null) || (startPosition == null) || (goalPosition == null))

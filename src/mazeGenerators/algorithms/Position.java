@@ -4,19 +4,21 @@
 package mazeGenerators.algorithms;
 
 import java.io.Serializable;
-
+/**
+ * Interface of Maze3d generator
+ * @author Ben Surkiss & Yovel Shchori
+ * @version 1.0
+ */
 public class Position implements Serializable {
 	private static final long serialVersionUID = -7043916336674527477L;
-	//Members
 	private int x;
 	private int y;
 	private int z;
 	
-	//Methods
-	/**
-	 * @param x
-	 * @param y
-	 * @param z
+	/** C'tor
+	 * @param x to set
+	 * @param y to set
+	 * @param z to set
 	 */
 	public Position(int x, int y, int z) {
 		this.x = x;
@@ -24,8 +26,8 @@ public class Position implements Serializable {
 		this.z = z;
 	}
 	/**
-	 * 
-	 * @param p
+	 * C'tor
+	 * @param p to copy from
 	 */
 	public Position(Position p){
 		this.x = p.getX();
